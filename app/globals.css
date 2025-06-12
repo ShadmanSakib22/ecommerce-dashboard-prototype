@@ -3,6 +3,7 @@
 
 @theme inline {
   --font-poppins: var(--font-poppins);
+  --font-roboto: var(--font-roboto);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-background-2: var(--background-2);
@@ -93,5 +94,16 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  .section-break {
+    @apply mb-2.5 sm:mb-5 lg:mb-10;
+  }
+
+  .card-sales-info {
+    @apply bg-background rounded-lg border border-input shadow-sm p-6;
+  }
+  .card-sale-orders-info {
+    @apply bg-background rounded-lg shadow-sm border border-input p-2.5 h-[78px];
   }
 }

@@ -44,12 +44,12 @@ export const MainSearch = () => {
             placeholder="Search by product, brand, or keyword"
             className="w-full text-foreground-2 placeholder:text-foreground border-0 outline-none"
           />
-          <Button className="flex lg:hidden bg-primary text-primary-foreground rounded-md size-[42px] ">
+          <Button className="flex lg:hidden bg-primary text-primary-foreground rounded-md size-[42px] cursor-pointer">
             <Search className="size-[24px]" />
           </Button>
         </div>
       </div>
-      <Button className="px-[26.5px] h-[48px] rounded-sm text-lg font-medium hidden lg:block">
+      <Button className="px-[26.5px] h-[48px] rounded-sm text-lg font-medium hidden lg:block cursor-pointer">
         Search
       </Button>
     </div>
