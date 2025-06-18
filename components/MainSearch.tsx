@@ -16,13 +16,12 @@ const SelectCategory = () => {
         <SelectValue placeholder="Categories" />
       </SelectTrigger>
       <SelectContent className="bg-background text-sm border-foreground">
-        <SelectItem value="all">All Category</SelectItem>
+        <SelectItem value="categories">Categories</SelectItem>
+        <SelectItem value="apparel">Apparel</SelectItem>
+        <SelectItem value="accessories">Accessories</SelectItem>
         <SelectItem value="electronics">Electronics</SelectItem>
-        <SelectItem value="fashion">Fashion</SelectItem>
-        <SelectItem value="beauty">Beauty</SelectItem>
-        <SelectItem value="sports">Sports</SelectItem>
-        <SelectItem value="toys">Toys</SelectItem>
-        <SelectItem value="health">Health</SelectItem>
+        <SelectItem value="homeGoods">Home Goods</SelectItem>
+        <SelectItem value="health&Beauty">Health & Beauty</SelectItem>
       </SelectContent>
     </Select>
   );
@@ -30,7 +29,7 @@ const SelectCategory = () => {
 
 export const MainSearch = () => {
   return (
-    <div className="container py-5 flex items-center gap-8 text-sm">
+    <div className="container py-5 flex items-center gap-8">
       <div className="flex-1 border border-foreground rounded-lg h-[52px] flex items-center px-1">
         <span className="hidden sm:flex">
           <SelectCategory />
@@ -38,18 +37,18 @@ export const MainSearch = () => {
         </span>
 
         <div className="flex items-center gap-2.5 flex-1 ml-1">
-          <Search className="size-4.5 hidden lg:block" />
+          <Search className="size-6 hidden lg:block" />
           <input
             type="text"
             placeholder="Search by product, brand, or keyword"
             className="w-full text-foreground-2 placeholder:text-foreground border-0 outline-none"
           />
           <Button className="flex lg:hidden bg-primary text-primary-foreground rounded-md size-[42px] cursor-pointer">
-            <Search className="size-[24px]" />
+            <Search className="size-6" />
           </Button>
         </div>
       </div>
-      <Button className="px-[26.5px] h-[48px] rounded-sm text-lg font-medium hidden lg:block cursor-pointer">
+      <Button className="px-[26.5px] h-[48px] w-[117px] rounded-sm text-lg font-medium hidden lg:block cursor-pointer">
         Search
       </Button>
     </div>

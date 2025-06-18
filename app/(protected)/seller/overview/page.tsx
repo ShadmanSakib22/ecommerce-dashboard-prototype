@@ -2,22 +2,28 @@ import { MainSearch } from "@/components/MainSearch";
 import SellerTabs from "@/components/SellerTabs";
 import SystemCTA from "@/components/SystemCTA";
 
-export default function SellerDashboard() {
+export default function SellerDashboardOverview() {
   return (
     <>
       <MainSearch />
-      <div className="border-t-1 border-border bg-gradient-to-r from-background to-background-2">
-        <div className="flex container">
-          <div className="bg-background border-0 lg:border-r-1 lg:border-border lg:bg-background">
-            <div className="hidden md:block py-4 lg:pr-4">
+      <div className="border-t-1 border-border bg-background xl:bg-gradient-to-r from-background to-background-2">
+        <div className="container min-h-screen flex">
+          {/* Sidebar */}
+          <div className="hidden sm:block bg-background border-r-1 border-border pr-4">
+            <div className="py-4">
               <SellerTabs activeTab={"Overview"} />
             </div>
           </div>
-          <div className="bg-background lg:bg-background-2 w-full">
-            <div className="py-4 md:pl-4">
-              <div className="flex gap-1 md:hidden mb-2.5">
+
+          {/* Main Content */}
+          <div className="flex-1 bg-background xl:bg-background-2 overflow-hidden">
+            <div className="py-4 sm:pl-4">
+              {/* Mobile Tabs */}
+              <div className="flex sm:hidden mb-4 bg-primary/5 rounded-md">
                 <SellerTabs activeTab={"Overview"} />
               </div>
+
+              {/* Page Header */}
               <h1 className="text-2xl md:text-3xl font-semibold text-foreground-2 mb-2">
                 Welcome back, John Doe!
               </h1>
