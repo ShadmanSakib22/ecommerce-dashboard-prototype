@@ -3,7 +3,14 @@
 import React, { useState, useMemo, useCallback, useTransition } from "react";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
-import { Search, Trash, SquarePen, ChevronDown } from "lucide-react";
+import {
+  Search,
+  Trash,
+  SquarePen,
+  ChevronDown,
+  TriangleAlert,
+  X,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -211,6 +218,14 @@ export default function App() {
   const [rowSelection, setRowSelection] = useState({});
   const [isPending, startTransition] = useTransition();
 
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
+  const [productsToUpdate, setProductsToUpdate] = useState<Product[]>([]);
+  const [bulkStock, setBulkStock] = useState<number | "">("");
+  const [bulkPrice, setBulkPrice] = useState<number | "">("");
+
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [productToDelete, setProductToDelete] = useState<Product | null>(null);
+
   const memoizedData = useMemo(() => data, [data]);
 
   // --- TanStack Table Column Definition ---
@@ -350,7 +365,10 @@ export default function App() {
             </Button>
             <Button
               className="flex-1 font-medium text-destructive border border-[#F9D2D9] bg-transparent hover:bg-destructive/5"
-              onClick={() => handleDelete([row.original.id])}
+              onClick={() => {
+                setProductToDelete(row.original);
+                setDeleteModalOpen(true);
+              }}
             >
               <Trash className="size-6" />
               <span className="inline-flex sm:hidden xl:inline-flex">
@@ -444,16 +462,6 @@ export default function App() {
     [executeAction]
   );
 
-  const handleBulkEdit = useCallback(() => {
-    const selectedIds = getSelectedIds();
-    if (selectedIds.length === 0) {
-      toast.error("Please select rows to edit.");
-      return;
-    }
-    console.log("Bulk Edit Selected:", selectedIds);
-    toast.success(`Bulk editing product(s).`);
-  }, [getSelectedIds]);
-
   const handleBulkDelete = useCallback(() => {
     const selectedIds = getSelectedIds();
     handleDelete(selectedIds);
@@ -532,16 +540,23 @@ export default function App() {
       {/* Bulk Actions & Column Visibility */}
       <div className="mt-5 hidden sm:flex space-x-2">
         <Button
-          onClick={handleBulkEdit}
+          onClick={() => {
+            setProductsToUpdate(
+              table
+                .getFilteredSelectedRowModel()
+                .rows.map((row) => row.original)
+            );
+            setUpdateModalOpen(true);
+          }}
           className="font-medium text-foreground-2 border border-border bg-background hover:bg-foreground/5"
-          disabled={selectedRowCount === 0}
+          disabled={selectedRowCount === 0 || isPending}
         >
           <SquarePen className="size-6" /> Update ({selectedRowCount})
         </Button>
         <Button
           className="font-medium text-destructive border border-[#F9D2D9] bg-background hover:bg-destructive/5"
           onClick={handleBulkDelete}
-          disabled={selectedRowCount === 0}
+          disabled={selectedRowCount === 0 || isPending}
         >
           <Trash className="size-6" /> Delete ({selectedRowCount})
         </Button>
@@ -659,6 +674,134 @@ export default function App() {
       </div>
       {/* Pagination */}
       <TablePagination table={table} globalFilter={globalFilter} />
+
+      {/* Delete Product Modal */}
+      {deleteModalOpen && productToDelete && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-background px-6 py-8 rounded-lg border border-border inline-flex flex-col items-center justify-center gap-5 w-[90%] max-w-[430px] mx-auto text-center">
+            <div className="inline-block p-4 rounded-full bg-secondary text-secondary-foreground ">
+              <TriangleAlert className="size-8 " />
+            </div>
+            <h3 className="text-foreground-2 font-medium text-2xl">
+              Delete Product?
+            </h3>
+            <p>
+              Are you sure you want to delete this product? This action cannot
+              be undone.
+            </p>
+            <p className="text-foreground-2 font-medium text-xl">
+              {productToDelete.name}
+            </p>
+            <div className="flex justify-center items-center gap-5">
+              <Button
+                className="font-medium text-foreground-2 border border-border bg-transparent hover:bg-foreground/5"
+                onClick={() => setDeleteModalOpen(false)}
+              >
+                <X className="size-6" />
+                <span className="inline-flex sm:hidden xl:inline-flex">
+                  {" "}
+                  Cancel
+                </span>
+              </Button>
+              <Button
+                className="font-medium "
+                onClick={async () => {
+                  await handleDelete([productToDelete.id]);
+                  setDeleteModalOpen(false);
+                  setProductToDelete(null);
+                }}
+              >
+                <Trash className="size-6" />
+                <span className="inline-flex sm:hidden xl:inline-flex">
+                  {" "}
+                  Delete
+                </span>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bulk Update Modal */}
+      {updateModalOpen && productsToUpdate.length > 0 && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-background px-6 py-8 rounded-lg border border-border inline-flex flex-col items-center justify-center gap-5 w-4/5 max-w-[430px] mx-auto text-center">
+            <h3 className="text-foreground-2 font-medium text-2xl">
+              Bulk Update Products
+            </h3>
+            <p>
+              Update{" "}
+              <span className="font-semibold">{productsToUpdate.length}</span>{" "}
+              product{productsToUpdate.length > 1 ? "s" : ""}.
+            </p>
+            <form
+              className="flex flex-col gap-4 w-full"
+              onSubmit={(e) => {
+                e.preventDefault();
+                // TODO: Integrate with DB/API
+                // Dummy function for now
+                console.log("Bulk update", {
+                  bulkStock,
+                  bulkPrice,
+                  productsToUpdate,
+                });
+                setUpdateModalOpen(false);
+                setBulkStock("");
+                setBulkPrice("");
+              }}
+            >
+              <div className="flex flex-col gap-2">
+                <label htmlFor="bulk-stock" className="text-left font-medium">
+                  Stock
+                </label>
+                <input
+                  id="bulk-stock"
+                  type="number"
+                  min={0}
+                  value={bulkStock}
+                  onChange={(e) =>
+                    setBulkStock(
+                      e.target.value === "" ? "" : Number(e.target.value)
+                    )
+                  }
+                  className="border rounded px-3 py-2"
+                  placeholder="Leave blank to keep unchanged"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="bulk-price" className="text-left font-medium">
+                  Price
+                </label>
+                <input
+                  id="bulk-price"
+                  type="number"
+                  min={0}
+                  value={bulkPrice}
+                  onChange={(e) =>
+                    setBulkPrice(
+                      e.target.value === "" ? "" : Number(e.target.value)
+                    )
+                  }
+                  className="border rounded px-3 py-2"
+                  placeholder="Leave blank to keep unchanged"
+                />
+              </div>
+              <div className="flex gap-4 justify-center mt-2">
+                <Button
+                  type="button"
+                  className="font-medium text-foreground-2 border border-border bg-transparent hover:bg-foreground/5"
+                  onClick={() => setUpdateModalOpen(false)}
+                >
+                  Cancel
+                </Button>
+                <Button type="submit" className="font-medium">
+                  Update
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
