@@ -22,7 +22,7 @@ const TableBodyView = <TData,>({
 }: TableBodyViewProps<TData>) => {
   return (
     <>
-      <div className="hidden sm:block rounded-lg border border-border bg-background">
+      <div className="hidden md:block rounded-lg border border-border bg-background">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

@@ -31,7 +31,7 @@ export const MainSearch = () => {
   return (
     <div className="container py-5 flex items-center gap-8">
       <div className="flex-1 border border-foreground rounded-lg h-[52px] flex items-center px-1">
-        <span className="hidden sm:flex">
+        <span className="hidden md:flex">
           <SelectCategory />
           <div className="border-r-1 border-border h-[33px] mr-4"></div>
         </span>

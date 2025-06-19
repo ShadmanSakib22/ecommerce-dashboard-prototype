@@ -1,9 +1,6 @@
-import Link from "next/link";
 import { MainSearch } from "@/components/MainSearch";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
 import SellerTabs from "@/components/SellerTabs";
-import ProductsTable from "@/components/ProductsTable";
+import ConstructionDialog from "@/components/ui/construction-dialog";
 
 export default function Page() {
   return (
@@ -14,7 +11,7 @@ export default function Page() {
           {/* Sidebar */}
           <div className="hidden md:block bg-background border-r-1 border-border pr-4">
             <div className="py-4">
-              <SellerTabs activeTab={"Products"} />
+              <SellerTabs activeTab={"Settings"} />
             </div>
           </div>
 
@@ -23,23 +20,17 @@ export default function Page() {
             <div className="py-4 md:pl-4">
               {/* Mobile Tabs */}
               <div className="flex md:hidden mb-4 bg-primary/5 rounded-md">
-                <SellerTabs activeTab={"Products"} />
+                <SellerTabs activeTab={"Settings"} />
               </div>
 
               {/* Page Header */}
-              <div className="flex items-center justify-between mb-4">
-                <h1 className="text-3xl font-semibold text-foreground-2">
-                  Products
-                </h1>
-                <Link href="/seller/products/new">
-                  <Button className="rounded-sm font-medium h-[52px] w-[174px]">
-                    <Plus className="size-6" /> Add Product
-                  </Button>
-                </Link>
-              </div>
+              <h1 className="text-3xl font-semibold text-foreground-2 section-break">
+                Settings
+              </h1>
 
-              {/* Products Table */}
-              <ProductsTable />
+              <ConstructionDialog />
+
+              {/* Settings */}
             </div>
           </div>
         </div>

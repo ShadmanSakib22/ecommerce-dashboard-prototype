@@ -15,7 +15,7 @@ const SystemCTA = ({
 }) => {
   if (type === "warning") {
     return (
-      <div className="bg-[#FFF7ED] text-[#C77414] font-roboto rounded-lg shadow-sm border border-[#FCCF9C] p-2.5 sm:py-6 sm:pl-11 sm:pr-4 flex gap-2.5 flex-wrap items-center">
+      <div className="bg-[#FFF7ED] text-[#C77414] font-roboto rounded-lg shadow-sm border border-[#FCCF9C] p-2.5 md:py-6 md:pl-11 md:pr-4 flex gap-2.5 flex-wrap items-center">
         <div className="flex gap-2.5 items-center ">
           <CircleAlert className="size-6" />
           <h2>{msg}</h2>

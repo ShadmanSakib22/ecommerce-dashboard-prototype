@@ -7,7 +7,7 @@ const SellerTabs = ({ activeTab }: { activeTab: string }) => {
     { name: "Overview", href: "/seller/overview", icon: <House /> },
     { name: "Products", href: "/seller/products", icon: <Box /> },
     { name: "Orders", href: "/seller/orders", icon: <ShoppingCart /> },
-    { name: "Customers", href: "/seller/customers", icon: <CreditCard /> },
+    { name: "Payments", href: "/seller/payments", icon: <CreditCard /> },
     { name: "Settings", href: "/seller/settings", icon: <Settings /> },
   ];
 

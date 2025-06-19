@@ -2,14 +2,14 @@ import { MainSearch } from "@/components/MainSearch";
 import SellerTabs from "@/components/SellerTabs";
 import SystemCTA from "@/components/SystemCTA";
 
-export default function SellerDashboardOverview() {
+export default function Page() {
   return (
     <>
       <MainSearch />
       <div className="border-t-1 border-border bg-background xl:bg-gradient-to-r from-background to-background-2">
         <div className="container min-h-screen flex">
           {/* Sidebar */}
-          <div className="hidden sm:block bg-background border-r-1 border-border pr-4">
+          <div className="hidden md:block bg-background border-r-1 border-border pr-4">
             <div className="py-4">
               <SellerTabs activeTab={"Overview"} />
             </div>
@@ -17,9 +17,9 @@ export default function SellerDashboardOverview() {
 
           {/* Main Content */}
           <div className="flex-1 bg-background xl:bg-background-2 overflow-hidden">
-            <div className="py-4 sm:pl-4">
+            <div className="py-4 md:pl-4">
               {/* Mobile Tabs */}
-              <div className="flex sm:hidden mb-4 bg-primary/5 rounded-md">
+              <div className="flex md:hidden mb-4 bg-primary/5 rounded-md">
                 <SellerTabs activeTab={"Overview"} />
               </div>
 

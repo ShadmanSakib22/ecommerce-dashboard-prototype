@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { MainSearch } from "@/components/MainSearch";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import SellerTabs from "@/components/SellerTabs";
-import ProductsTable from "@/components/ProductsTable";
 
 export default function Page() {
   return (
@@ -27,19 +25,19 @@ export default function Page() {
               </div>
 
               {/* Page Header */}
-              <div className="flex items-center justify-between mb-4">
-                <h1 className="text-3xl font-semibold text-foreground-2">
-                  Products
-                </h1>
-                <Link href="/seller/products/new">
-                  <Button className="rounded-sm font-medium h-[52px] w-[174px]">
-                    <Plus className="size-6" /> Add Product
-                  </Button>
+              <div className="flex gap-2.5 text-foreground-2 items-center">
+                <Link href="/seller/products">
+                  <ArrowLeft className="size-6" />
                 </Link>
+                <h1 className="text-2xl md:text-3xl font-semibold">
+                  Add New Product
+                </h1>
               </div>
+              <p className="text-xl mt-2.5 mb-[26px]">
+                Fill in the details to list your product for sale
+              </p>
 
-              {/* Products Table */}
-              <ProductsTable />
+              {/* Product Form */}
             </div>
           </div>
         </div>

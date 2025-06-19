@@ -358,7 +358,7 @@ export default function App() {
               onClick={() => handleEdit(row.original.id)}
             >
               <SquarePen className="size-6" />
-              <span className="inline-flex sm:hidden xl:inline-flex">
+              <span className="inline-flex md:hidden xl:inline-flex">
                 {" "}
                 Edit
               </span>
@@ -371,7 +371,7 @@ export default function App() {
               }}
             >
               <Trash className="size-6" />
-              <span className="inline-flex sm:hidden xl:inline-flex">
+              <span className="inline-flex md:hidden xl:inline-flex">
                 {" "}
                 Delete
               </span>
@@ -500,10 +500,10 @@ export default function App() {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col sm:flex-row gap-x-5 gap-y-2.5 w-full lg:w-auto ">
+        <div className="flex flex-col md:flex-row gap-x-5 gap-y-2.5 w-full lg:w-auto ">
           {/* Category Filter */}
           <Select onValueChange={handleCategoryFilterChange}>
-            <SelectTrigger className="w-full sm:w-1/2 lg:w-auto min-w-[204px] h-[52px]! bg-background! text-foreground-2! cursor-pointer border-border rounded-md shadow-none">
+            <SelectTrigger className="w-full md:w-1/2 lg:w-auto min-w-[204px] h-[52px]! bg-background! text-foreground-2! cursor-pointer border-border rounded-md shadow-none">
               <div>
                 {(table.getColumn("category")?.getFilterValue() as string) ||
                   "Category"}
@@ -521,7 +521,7 @@ export default function App() {
 
           {/* Stock Status Filter */}
           <Select onValueChange={handleStatusFilterChange}>
-            <SelectTrigger className="w-full sm:w-1/2 lg:w-auto min-w-[204px] h-[52px]! bg-background! text-foreground-2! cursor-pointer border-border rounded-md shadow-none">
+            <SelectTrigger className="w-full md:w-1/2 lg:w-auto min-w-[204px] h-[52px]! bg-background! text-foreground-2! cursor-pointer border-border rounded-md shadow-none">
               <div>
                 {(table.getColumn("status")?.getFilterValue() as string) ||
                   "Stock Status"}
@@ -538,7 +538,7 @@ export default function App() {
       </div>
 
       {/* Bulk Actions & Column Visibility */}
-      <div className="mt-5 hidden sm:flex space-x-2">
+      <div className="mt-5 hidden md:flex space-x-2">
         <Button
           onClick={() => {
             setProductsToUpdate(
@@ -594,7 +594,7 @@ export default function App() {
       {/* Table */}
       <TableBodyView table={table} columns={columns} />
       {/* Table - Mobile view */}
-      <div className="flex flex-col gap-2.5 sm:hidden">
+      <div className="flex flex-col gap-2.5 md:hidden">
         {table.getRowModel().rows.length ? (
           table.getRowModel().rows.map((row) => (
             <div
@@ -698,7 +698,7 @@ export default function App() {
                 onClick={() => setDeleteModalOpen(false)}
               >
                 <X className="size-6" />
-                <span className="inline-flex sm:hidden xl:inline-flex">
+                <span className="inline-flex md:hidden xl:inline-flex">
                   {" "}
                   Cancel
                 </span>
@@ -712,7 +712,7 @@ export default function App() {
                 }}
               >
                 <Trash className="size-6" />
-                <span className="inline-flex sm:hidden xl:inline-flex">
+                <span className="inline-flex md:hidden xl:inline-flex">
                   {" "}
                   Delete
                 </span>

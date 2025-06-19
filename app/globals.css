@@ -43,6 +43,10 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme {
+  --breakpoint-md: 744px;
+}
+
 @utility container {
   @apply max-w-[1344px] mx-auto px-4 md:px-8;
 } /* 1280 + 32x2 = 1344px */
@@ -97,7 +101,7 @@
   }
 
   .section-break {
-    @apply mb-2.5 sm:mb-5 lg:mb-10;
+    @apply mb-2.5 md:mb-5 lg:mb-10;
   }
 
   .card-sales-info {
