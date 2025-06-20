@@ -5,10 +5,11 @@ import SellerTabs from "@/components/SellerTabs";
 import ConstructionDialog from "@/components/ui/construction-dialog";
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
+
 const Page = async ({ params }: PageProps) => {
-  const { id } = params;
+  const { id } = await params;
   return (
     <>
       <MainSearch />

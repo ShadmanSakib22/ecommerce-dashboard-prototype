@@ -5,10 +5,11 @@ import SellerTabs from "@/components/SellerTabs";
 import ProductBuilder from "@/components/ProductBuilder";
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
+
 const Page = async ({ params }: PageProps) => {
-  const { id } = params;
+  const { id } = await params;
   // ToDo: Fetch product details using params.id and populate the form
   return (
     <>
