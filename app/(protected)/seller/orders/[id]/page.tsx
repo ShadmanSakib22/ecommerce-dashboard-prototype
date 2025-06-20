@@ -5,7 +5,7 @@ import SellerTabs from "@/components/SellerTabs";
 import ConstructionDialog from "@/components/ui/construction-dialog";
 
 const page = async ({ params }: { params: { id: string } }) => {
-  const { id } = await params;
+  const { id } = params;
   return (
     <>
       <MainSearch />
