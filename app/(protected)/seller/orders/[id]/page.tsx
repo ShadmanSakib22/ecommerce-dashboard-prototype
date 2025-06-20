@@ -4,13 +4,10 @@ import { ArrowLeft } from "lucide-react";
 import SellerTabs from "@/components/SellerTabs";
 import ConstructionDialog from "@/components/ui/construction-dialog";
 
-interface OrderDetailsPageProps {
-  params: {
-    id: string;
-  };
+interface PageProps {
+  params: { id: string };
 }
-
-const page = async ({ params }: OrderDetailsPageProps) => {
+const Page = async ({ params }: PageProps) => {
   const { id } = params;
   return (
     <>
@@ -54,4 +51,4 @@ const page = async ({ params }: OrderDetailsPageProps) => {
   );
 };
 
-export default page;
+export default Page;

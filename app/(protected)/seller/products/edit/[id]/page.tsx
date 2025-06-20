@@ -4,13 +4,10 @@ import { ArrowLeft } from "lucide-react";
 import SellerTabs from "@/components/SellerTabs";
 import ProductBuilder from "@/components/ProductBuilder";
 
-interface ProductDetailsPageProps {
-  params: {
-    id: string;
-  };
+interface PageProps {
+  params: { id: string };
 }
-
-const page = async ({ params }: ProductDetailsPageProps) => {
+const Page = async ({ params }: PageProps) => {
   const { id } = params;
   // ToDo: Fetch product details using params.id and populate the form
   return (
@@ -58,4 +55,4 @@ const page = async ({ params }: ProductDetailsPageProps) => {
   );
 };
 
-export default page;
+export default Page;
