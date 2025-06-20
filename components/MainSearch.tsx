@@ -16,12 +16,16 @@ const SelectCategory = () => {
         <SelectValue placeholder="Categories" />
       </SelectTrigger>
       <SelectContent className="bg-background text-sm border-foreground">
-        <SelectItem value="categories">Categories</SelectItem>
-        <SelectItem value="apparel">Apparel</SelectItem>
-        <SelectItem value="accessories">Accessories</SelectItem>
-        <SelectItem value="electronics">Electronics</SelectItem>
-        <SelectItem value="homeGoods">Home Goods</SelectItem>
-        <SelectItem value="health&Beauty">Health & Beauty</SelectItem>
+        <SelectItem value="Categories">Categories</SelectItem>
+        <SelectItem value="Mobile">Mobile</SelectItem>
+        <SelectItem value="Laptop&Accessories">Laptop & Accessories</SelectItem>
+        <SelectItem value="Wearables">Wearables</SelectItem>
+        <SelectItem value="Headphones&Audio">Headphones & Audio</SelectItem>
+        <SelectItem value="Kitchen&Dining">Kitchen & Dining</SelectItem>
+        <SelectItem value="MensClothing">Men's Clothing</SelectItem>
+        <SelectItem value="WomensClothing">Women's Clothing</SelectItem>
+        <SelectItem value="KidsWear">Kid's Wear</SelectItem>
+        <SelectItem value="Skincare">Skincare</SelectItem>
       </SelectContent>
     </Select>
   );

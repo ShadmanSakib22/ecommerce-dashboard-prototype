@@ -44,6 +44,7 @@
 }
 
 @theme {
+  --breakpoint-sm: 480px;
   --breakpoint-md: 744px;
 }
 
@@ -109,5 +110,8 @@
   }
   .card-sale-orders-info {
     @apply bg-background rounded-lg shadow-sm border border-input p-2.5 h-[78px];
+  }
+  .card-form {
+    @apply bg-background text-foreground-2 p-2.5 md:p-[26px] rounded-lg border border-border mb-5;
   }
 }

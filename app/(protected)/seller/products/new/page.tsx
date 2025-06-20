@@ -2,6 +2,7 @@ import Link from "next/link";
 import { MainSearch } from "@/components/MainSearch";
 import { ArrowLeft } from "lucide-react";
 import SellerTabs from "@/components/SellerTabs";
+import ProductBuilder from "@/components/ProductBuilder";
 
 export default function Page() {
   return (
@@ -25,19 +26,22 @@ export default function Page() {
               </div>
 
               {/* Page Header */}
-              <div className="flex gap-2.5 text-foreground-2 items-center">
+              <div className="flex gap-2.5 text-foreground-2 mb-2.5 lg:mb-[26px]">
                 <Link href="/seller/products">
-                  <ArrowLeft className="size-6" />
+                  <ArrowLeft className="size-6 mt-1" />
                 </Link>
-                <h1 className="text-2xl md:text-3xl font-semibold">
-                  Add New Product
-                </h1>
+                <div>
+                  <h1 className="text-2xl md:text-3xl font-semibold">
+                    Add New Product
+                  </h1>
+                  <p className="text-base md:text-xl mt-2.5 text-foreground">
+                    Fill in the details to list your product for sale
+                  </p>
+                </div>
               </div>
-              <p className="text-xl mt-2.5 mb-[26px]">
-                Fill in the details to list your product for sale
-              </p>
 
               {/* Product Form */}
+              <ProductBuilder />
             </div>
           </div>
         </div>

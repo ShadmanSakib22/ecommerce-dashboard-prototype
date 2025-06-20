@@ -52,11 +52,15 @@ type Product = {
   stock: number;
   status: "Active" | "Low Stock" | "Out of Stock";
   category:
-    | "Apparel"
-    | "Accessories"
-    | "Electronics"
-    | "Home Goods"
-    | "Health & Beauty";
+    | "Mobile"
+    | "Laptop & Accessories"
+    | "Wearables"
+    | "Headphones & Audio"
+    | "Kitchen & Dining"
+    | "Men's Clothing"
+    | "Women's Clothing"
+    | "Kid's Wear"
+    | "Skincare";
 };
 
 // Mock Data
@@ -64,112 +68,112 @@ const rawProducts: Product[] = [
   {
     id: "1",
     image: "/file.svg",
-    name: "Premium Cotton T-Shirt",
-    sku: "TS-001",
-    price: 100,
-    stock: 200,
+    name: "Android Smartphone",
+    sku: "MB-001",
+    price: 699,
+    stock: 120,
     status: "Active",
-    category: "Apparel",
+    category: "Mobile",
   },
   {
     id: "2",
     image: "/file.svg",
-    name: "Leather Wallet",
-    sku: "WL-002",
-    price: 50,
-    stock: 200,
+    name: "Gaming Laptop",
+    sku: "LA-002",
+    price: 1299,
+    stock: 15,
     status: "Active",
-    category: "Accessories",
+    category: "Laptop & Accessories",
   },
   {
     id: "3",
     image: "/file.svg",
-    name: "Wireless Earbuds",
-    sku: "EB-003",
-    price: 70,
-    stock: 12,
+    name: "Smart Fitness Band",
+    sku: "WE-003",
+    price: 59,
+    stock: 8,
     status: "Low Stock",
-    category: "Electronics",
+    category: "Wearables",
   },
   {
     id: "4",
     image: "/file.svg",
-    name: "Handcrafted Ceramic Mug",
-    sku: "MG-004",
-    price: 60,
-    stock: 32,
-    status: "Active",
-    category: "Home Goods",
+    name: "Wireless Headphones",
+    sku: "HA-004",
+    price: 120,
+    stock: 0,
+    status: "Out of Stock",
+    category: "Headphones & Audio",
   },
   {
     id: "5",
     image: "/file.svg",
-    name: "Organic Face Cream",
-    sku: "OF-005",
-    price: 200,
-    stock: 0,
-    status: "Out of Stock",
-    category: "Health & Beauty",
+    name: "Non-stick Frying Pan",
+    sku: "KD-005",
+    price: 35,
+    stock: 40,
+    status: "Active",
+    category: "Kitchen & Dining",
   },
   {
     id: "6",
     image: "/file.svg",
-    name: "Bamboo Cutting Board",
-    sku: "CB-006",
-    price: 20,
-    stock: 5,
-    status: "Low Stock",
-    category: "Home Goods",
+    name: "Men's Denim Jacket",
+    sku: "MC-006",
+    price: 80,
+    stock: 25,
+    status: "Active",
+    category: "Men's Clothing",
   },
   {
     id: "7",
     image: "/file.svg",
-    name: "Ergonomic Desk Chair",
-    sku: "DC-007",
-    price: 350,
-    stock: 15,
-    status: "Active",
-    category: "Home Goods",
+    name: "Women's Summer Dress",
+    sku: "WC-007",
+    price: 65,
+    stock: 5,
+    status: "Low Stock",
+    category: "Women's Clothing",
   },
   {
     id: "8",
     image: "/file.svg",
-    name: "Smart Home Speaker",
-    sku: "SH-008",
-    price: 120,
-    stock: 8,
-    status: "Low Stock",
-    category: "Electronics",
+    name: "Kid's Cartoon T-shirt",
+    sku: "KW-008",
+    price: 20,
+    stock: 0,
+    status: "Out of Stock",
+    category: "Kid's Wear",
   },
   {
     id: "9",
     image: "/file.svg",
-    name: "Stainless Steel Water Bottle",
-    sku: "WB-009",
-    price: 25,
-    stock: 50,
+    name: "Hydrating Face Serum",
+    sku: "SK-009",
+    price: 45,
+    stock: 60,
     status: "Active",
-    category: "Accessories",
+    category: "Skincare",
   },
   {
     id: "10",
     image: "/file.svg",
-    name: "Noise-Cancelling Headphones",
-    sku: "NC-010",
-    price: 180,
-    stock: 0,
-    status: "Out of Stock",
-    category: "Electronics",
+    name: "Bluetooth Earbuds",
+    sku: "HA-010",
+    price: 75,
+    stock: 12,
+    status: "Active",
+    category: "Headphones & Audio",
   },
   {
     id: "11",
     image: "/file.svg",
-    name: "High-Performance Laptop",
-    sku: "HP-011",
-    price: 1500,
-    stock: 10,
+    name: "Laptop Cooling Pad",
+    sku: "LA-011",
+    price: 35,
+    stock: 18,
     status: "Active",
-    category: "Electronics",
+    category: "Laptop & Accessories",
   },
 ];
 
@@ -492,7 +496,7 @@ export default function App() {
           <Search className="size-6 ml-2.5" />
           <Input
             type="text"
-            className="text-foreground-2 bg-background! border-none shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
+            className="text-foreground-2 bg-background! border-none shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 h-[40px]!"
             placeholder="Search by name or SKU..."
             value={globalFilter ?? ""}
             onChange={(e) => setGlobalFilter(e.target.value)}
@@ -511,11 +515,19 @@ export default function App() {
             </SelectTrigger>
             <SelectContent className="bg-background text-sm border-foreground">
               <SelectItem value="All">All Categories</SelectItem>
-              <SelectItem value="Apparel">Apparel</SelectItem>
-              <SelectItem value="Accessories">Accessories</SelectItem>
-              <SelectItem value="Electronics">Electronics</SelectItem>
-              <SelectItem value="Home Goods">Home Goods</SelectItem>
-              <SelectItem value="Health & Beauty">Health & Beauty</SelectItem>
+              <SelectItem value="Mobile">Mobile</SelectItem>
+              <SelectItem value="Laptop & Accessories">
+                Laptop & Accessories
+              </SelectItem>
+              <SelectItem value="Wearables">Wearables</SelectItem>
+              <SelectItem value="Headphones & Audio">
+                Headphones & Audio
+              </SelectItem>
+              <SelectItem value="Kitchen & Dining">Kitchen & Dining</SelectItem>
+              <SelectItem value="Men's Clothing">Men's Clothing</SelectItem>
+              <SelectItem value="Women's Clothing">Women's Clothing</SelectItem>
+              <SelectItem value="Kid's Wear">Kid's Wear</SelectItem>
+              <SelectItem value="Skincare">Skincare</SelectItem>
             </SelectContent>
           </Select>
 
