@@ -704,30 +704,24 @@ export default function App() {
             <p className="text-foreground-2 font-medium text-xl">
               {productToDelete.name}
             </p>
-            <div className="flex justify-center items-center gap-5">
+            <div className="flex w-full justify-center items-center gap-5">
               <Button
-                className="font-medium text-foreground-2 border border-border bg-transparent hover:bg-foreground/5"
+                className="flex-1 font-medium text-foreground-2 border border-border bg-transparent hover:bg-foreground/5"
                 onClick={() => setDeleteModalOpen(false)}
               >
-                <X className="size-6" />
-                <span className="inline-flex md:hidden xl:inline-flex">
-                  {" "}
-                  Cancel
-                </span>
+                <X className="size-6 inline" />
+                Cancel
               </Button>
               <Button
-                className="font-medium "
+                className="flex-1 font-medium "
                 onClick={async () => {
                   await handleDelete([productToDelete.id]);
                   setDeleteModalOpen(false);
                   setProductToDelete(null);
                 }}
               >
-                <Trash className="size-6" />
-                <span className="inline-flex md:hidden xl:inline-flex">
-                  {" "}
-                  Delete
-                </span>
+                <Trash className="size-6 inline" />
+                Delete
               </Button>
             </div>
           </div>

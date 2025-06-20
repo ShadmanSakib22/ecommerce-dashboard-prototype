@@ -29,9 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${poppins.variable} ${roboto.variable} antialiased min-h-screen`}
-      >
+      <body className={`${poppins.variable} ${roboto.variable} antialiased`}>
         <Navbar />
         <Toaster
           position="bottom-center"
@@ -42,7 +40,7 @@ export default function RootLayout({
             duration: 3500,
           }}
         />
-        {children}
+        <div className="min-h-screen">{children}</div>
         <Footer />
       </body>
     </html>
