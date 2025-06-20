@@ -3,6 +3,7 @@ import { Poppins, Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -32,6 +33,15 @@ export default function RootLayout({
         className={`${poppins.variable} ${roboto.variable} antialiased min-h-screen`}
       >
         <Navbar />
+        <Toaster
+          position="bottom-center"
+          reverseOrder={false}
+          toastOptions={{
+            className:
+              "bg-background! text-primary! border-1 border-primary! text-sm! md:text-base!",
+            duration: 3500,
+          }}
+        />
         {children}
         <Footer />
       </body>
