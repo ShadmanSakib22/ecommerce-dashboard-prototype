@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("mongo_url")
+}
+
+// -------------------
+// ENUMS
+// -------------------
+
+enum ProductCategory {
+  MOBILES
+  LAPTOPS_ACCESSORIES
+  WEARABLES
+  HEADPHONES_AUDIO
+  KITCHEN_DINNING
+  MENS_CLOTHING
+  WOMENS_CLOTHING
+  KIDS_WEAR
+  SKINCARE
+}
+
+enum OrderStatus {
+  PROCESSED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+// -------------------
+// MODELS
+// -------------------
+
+model User {
+  // --- MODIFIED BLOCK ---
+  id        String    @id @map("_id") // clerkId
+  email     String    @unique
+  name      String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // Relations
+  products     Product[]
+  sellerOrders Order[]   @relation("SellerOrders")
+  buyerOrders  Order[]   @relation("BuyerOrders")
+}
+
+// Product Tags (Unique)
+model Tag {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String   @unique
+  products   Product[] @relation(fields: [productIds], references: [id])
+  productIds String[] @db.ObjectId
+}
+
+// Product model
+model Product {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  title             String
+  description       String
+  images            String[]
+  category          ProductCategory
+  specifications    Json
+  price             Float
+  salePrice         Float?
+  quantity          Int
+  sku               String
+  enableNegotiation Boolean         @default(false)
+  seoTitle          String
+  seoDescription    String
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+
+  seller   User   @relation(fields: [sellerId], references: [id])
+  sellerId String
+
+  tags         Tag[]            @relation(fields: [tagIds], references: [id])
+  tagIds       String[]         @db.ObjectId
+  orderedItems OrderedProduct[]
+}
+
+// Order model
+model Order {
+  id                   String      @id @default(auto()) @map("_id") @db.ObjectId
+  status               OrderStatus @default(PROCESSED)
+  orderPlacedDate      DateTime    @default(now())
+  paymentConfirmedDate DateTime?
+  buyerName            String
+  buyerEmail           String
+  shippingAddress      Json
+  paymentMethod        String
+  total                Float
+  shippingFee          Float
+  tax                  Float
+  discount             Float       @default(0)
+
+  seller   User   @relation("SellerOrders", fields: [sellerId], references: [id])
+  sellerId String
+  buyer    User   @relation("BuyerOrders", fields: [buyerId], references: [id])
+  buyerId  String
+
+  items OrderedProduct[]
+}
+
+// Intermediary model for products in an order
+model OrderedProduct {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  order       Order    @relation(fields: [orderId], references: [id])
+  orderId     String   @db.ObjectId
+  product     Product? @relation(fields: [productId], references: [id])
+  productId   String?  @db.ObjectId
+  title       String
+  image       String
+  priceAtTime Float
+  quantity    Int
+}

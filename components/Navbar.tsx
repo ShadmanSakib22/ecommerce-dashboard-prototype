@@ -1,6 +1,14 @@
 import Link from "next/link";
 import SelectLanguage from "@/components/SelectLanguage";
 import { CircleHelp, Bell, PanelLeft } from "lucide-react";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   return (
@@ -32,7 +40,23 @@ const Navbar = () => {
             </span>
           </button>
           {/* Clerk Profile Button */}
-          <div>Clerk-Buttons</div>
+          <div className="flex justify-end items-center gap-2">
+            <SignedOut>
+              <SignInButton>
+                <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/70 hover:scale-95 rounded-md cursor-pointer">
+                  Sign In
+                </Button>
+              </SignInButton>
+              <SignUpButton>
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-95 rounded-md cursor-pointer">
+                  Sign Up
+                </Button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
         </div>
       </div>
     </div>
