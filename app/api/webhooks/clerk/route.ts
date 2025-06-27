@@ -10,11 +10,11 @@ async function handler(request: Request) {
   const payload = await request.json();
 
   // Get the headers from the incoming request.
-  const headersList = await headers();
+  const headersList = headers();
   const heads = {
-    "svix-id": headersList.get("svix-id") ?? "",
-    "svix-timestamp": headersList.get("svix-timestamp") ?? "",
-    "svix-signature": headersList.get("svix-signature") ?? "",
+    "svix-id": headersList.get("svix-id"),
+    "svix-timestamp": headersList.get("svix-timestamp"),
+    "svix-signature": headersList.get("svix-signature"),
   };
 
   // Initialize Svix webhook verifier
