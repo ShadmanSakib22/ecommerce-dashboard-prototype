@@ -4,13 +4,15 @@ import { headers } from "next/headers";
 import prisma from "@/lib/prisma";
 
 const webhookSecret: string = process.env.CLERK_WEBHOOK_SECRET || "";
+console.log("Webhook Secret:", webhookSecret);
 
 async function handler(request: Request) {
   // Parse the request body as JSON
   const payload = await request.json();
 
   // Get the headers from the incoming request.
-  const headersList = headers();
+  const headersList = await headers();
+  console.log("Headers received:", headersList);
   const heads = {
     "svix-id": headersList.get("svix-id"),
     "svix-timestamp": headersList.get("svix-timestamp"),
@@ -22,7 +24,7 @@ async function handler(request: Request) {
   let evt: any;
   try {
     // Verify the webhook signature and parse the payload
-    evt = wh.verify(JSON.stringify(payload), heads);
+    evt = wh.verify(JSON.stringify(payload), heads as any);
   } catch (err: any) {
     console.error("Webhook verification failed:", err.message);
     return new Response("Error occurred", { status: 400 });
