@@ -4,7 +4,6 @@ import { headers } from "next/headers";
 import prisma from "@/lib/prisma";
 
 const webhookSecret: string = process.env.CLERK_WEBHOOK_SECRET || "";
-console.log("Webhook Secret:", webhookSecret);
 
 async function handler(request: Request) {
   // Parse the request body as JSON
@@ -12,7 +11,6 @@ async function handler(request: Request) {
 
   // Get the headers from the incoming request.
   const headersList = await headers();
-  console.log("Headers received:", headersList);
   const heads = {
     "svix-id": headersList.get("svix-id"),
     "svix-timestamp": headersList.get("svix-timestamp"),
