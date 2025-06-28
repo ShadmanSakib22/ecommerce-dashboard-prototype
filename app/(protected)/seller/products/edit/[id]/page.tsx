@@ -3,14 +3,19 @@ import { MainSearch } from "@/components/MainSearch";
 import { ArrowLeft } from "lucide-react";
 import SellerTabs from "@/components/SellerTabs";
 import ProductBuilder from "@/components/ProductBuilder";
+import { auth } from "@clerk/nextjs/server";
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
 const Page = async ({ params }: PageProps) => {
-  const { id } = await params;
   // ToDo: Fetch product details using params.id and populate the form
+  const { id } = await params;
+
+  const { userId } = await auth(); // middleware prevents userId from being null
+  const currentUserId: string = userId!;
+
   return (
     <>
       <MainSearch />
@@ -47,7 +52,7 @@ const Page = async ({ params }: PageProps) => {
               </div>
 
               {/* Product Form */}
-              <ProductBuilder />
+              <ProductBuilder userId={currentUserId} />
             </div>
           </div>
         </div>
