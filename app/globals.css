@@ -119,3 +119,8 @@
     @apply bg-background text-foreground-2 p-2.5 md:p-[26px] rounded-lg border border-border mb-5;
   }
 }
+
+.cl-avatarBox {
+  width: 32px !important;
+  height: 32px !important;
+}
