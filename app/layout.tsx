@@ -42,7 +42,7 @@ export default function RootLayout({
             reverseOrder={false}
             toastOptions={{
               className:
-                "bg-background! text-primary! border-1 border-primary! text-sm! md:text-base!",
+                "bg-secondary! text-primary! border-1 border-primary! text-xs!",
               duration: 3500,
             }}
           />

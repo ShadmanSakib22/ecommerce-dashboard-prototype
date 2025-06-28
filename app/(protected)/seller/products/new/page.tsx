@@ -3,8 +3,12 @@ import { MainSearch } from "@/components/MainSearch";
 import { ArrowLeft } from "lucide-react";
 import SellerTabs from "@/components/SellerTabs";
 import ProductBuilder from "@/components/ProductBuilder";
+import { auth } from "@clerk/nextjs/server";
 
-export default function Page() {
+export default async function Page() {
+  const { userId } = await auth(); // middleware prevents userId from being null
+  const currentUserId: string = userId!;
+
   return (
     <>
       <MainSearch />
@@ -41,7 +45,7 @@ export default function Page() {
               </div>
 
               {/* Product Form */}
-              <ProductBuilder />
+              <ProductBuilder userId={currentUserId} />
             </div>
           </div>
         </div>
