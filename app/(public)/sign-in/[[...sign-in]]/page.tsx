@@ -2,20 +2,18 @@ import { SignIn } from "@clerk/nextjs";
 
 export default function Page() {
   return (
-    <div className="flex justify-center items-center my-4">
+    <div className="flex justify-center items-center min-h-screen py-[5rem] background-image">
       <SignIn
         appearance={{
           elements: {
-            card: "bg-base-300! text-base-content!",
-            headerTitle: "text-primary!",
-            socialButtons:
-              "bg-none! bg-base-100! rounded-md! border! border-primary!",
-            socialButtonsBlockButtonText: "text-primary!",
+            card: "bg-background-2! text-foreground!",
+            headerTitle: "text-primary! uppercase!",
+            socialButtons: "bg-background!",
             formFieldLabel: "text-primary!",
             input: "bg-none! bg-base-100! text-base-content!",
             formButtonPrimary:
-              "bg-base-200! text-base-content! border-1! border-base-content/20! shadow-none!",
-            footer: "bg-none! bg-base-200!",
+              "bg-primary! text-primary-foreground! shadow-none!",
+            footer: "bg-none! bg-secondary!",
             footerActionLink: "text-primary!",
           },
         }}

@@ -101,6 +101,10 @@
     @apply bg-background text-foreground;
   }
 
+  .background-image {
+    @apply bg-[url('/abstract-bg.png')] bg-no-repeat bg-cover bg-center;
+  }
+
   .section-break {
     @apply mb-2.5 md:mb-5 lg:mb-10;
   }
